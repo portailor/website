@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="현대자동차 설비관리 엔지니어 포트폴리오 - Siemens PLC, Yaskawa 로봇 전문가">
+    <meta name="keywords" content="설비관리, 엔지니어, 현대자동차, PLC, 로봇, 전기공학">
+    <title>Portfolio | 설비관리 엔지니어</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'navy': {
+                            900: '#0a1628',
+                            800: '#0f2240',
+                            700: '#142d52',
+                            600: '#1a3a68',
+                            500: '#1e4d8c'
+                        },
+                        'accent': {
+                            gold: '#c9a962',
+                            silver: '#a8b5c4'
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Noto Sans KR', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #0a1628;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #1e4d8c;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
+        
+        /* Gradient text animation */
+        .gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #a8b5c4 50%, #c9a962 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Subtle glow effect */
+        .glow-effect {
+            box-shadow: 0 0 40px rgba(30, 77, 140, 0.3);
+        }
+        
+        /* Card hover animation */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Skill bar animation */
+        .skill-bar {
+            transition: width 1.5s ease-in-out;
+        }
+        
+        /* Navigation active state */
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #c9a962, #ffffff);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* YouTube button glow */
+        .youtube-glow {
+            animation: pulse-glow 2s infinite;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 0, 0, 0.6);
+            }
+        }
+        
+        /* Fade in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Hero background pattern */
+        .hero-pattern {
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(30, 77, 140, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(201, 169, 98, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 60% 80%, rgba(30, 77, 140, 0.1) 0%, transparent 40%);
+        }
+        
+        /* Timeline styles */
+        .timeline-line {
+            background: linear-gradient(180deg, #1e4d8c 0%, #c9a962 100%);
+        }
+    </style>
+</head>
+<body class="bg-navy-900 text-white antialiased">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-navy-900/95 backdrop-blur-md border-b border-navy-700/50 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="#hero" class="text-xl font-bold tracking-tight">
+                    <span class="text-white">PORTFOLIO</span>
+                    <span class="text-accent-gold">.</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#hero" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">홈</a>
+                    <a href="#about" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">소개</a>
+                    <a href="#career" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">경력 & 기술</a>
+                    <a href="#socials" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">소셜</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-300 hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-navy-700/50 pt-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="#hero" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">홈</a>
+                    <a href="#about" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">소개</a>
+                    <a href="#career" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">경력 & 기술</a>
+                    <a href="#socials" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">소셜</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center hero-pattern relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute top-1/4 left-10 w-72 h-72 bg-navy-500/20 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/4 right-10 w-96 h-96 bg-accent-gold/5 rounded-full blur-3xl"></div>
+        
+        <div class="max-w-6xl mx-auto px-6 py-32 text-center relative z-10">
+            <div class="fade-in">
+                <!-- Badge -->
+                <div class="inline-flex items-center px-4 py-2 rounded-full bg-navy-700/50 border border-navy-600/50 mb-8">
+                    <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                    <span class="text-sm text-gray-300">현대자동차 근무중</span>
+                </div>
+                
+                <!-- Main Title -->
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                    <span class="text-white">설비관리</span>
+                    <br>
+                    <span class="gradient-text">엔지니어</span>
+                </h1>
+                
+                <!-- Subtitle -->
+                <p class="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+                    <span class="text-accent-gold font-medium">Siemens PLC</span> & 
+                    <span class="text-accent-gold font-medium">Yaskawa 로봇</span> 전문가
+                    <br class="hidden md:block">
+                    스마트 팩토리의 안정적인 운영을 책임지는 엔지니어입니다
+                </p>
+                
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#about" class="group px-8 py-4 bg-gradient-to-r from-navy-600 to-navy-500 rounded-lg font-medium hover:from-navy-500 hover:to-navy-400 transition-all duration-300 flex items-center">
+                        자세히 보기
+                        <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                    <a href="#socials" class="px-8 py-4 border border-gray-600 rounded-lg font-medium text-gray-300 hover:border-accent-gold hover:text-accent-gold transition-all duration-300">
+                        연락하기
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Scroll indicator -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-navy-800/50 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-navy-900 via-transparent to-navy-900"></div>
+        
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            <div class="fade-in">
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <span class="text-accent-gold text-sm font-medium tracking-widest uppercase">About Me</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mt-4 mb-6">소개</h2>
+                    <div class="w-20 h-1 bg-gradient-to-r from-navy-600 to-accent-gold mx-auto rounded-full"></div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- Profile Image Area -->
+                    <div class="relative">
+                        <div class="aspect-square max-w-md mx-auto rounded-2xl bg-gradient-to-br from-navy-700 to-navy-800 p-1 glow-effect">
+                            <div class="w-full h-full rounded-2xl bg-navy-800 flex items-center justify-center overflow-hidden">
+                                <!-- Placeholder for profile -->
+                                <div class="text-center p-8">
+                                    <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-navy-600 to-navy-500 flex items-center justify-center mb-4">
+                                        <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                        </svg>
+                                    </div>
+                                    <p class="text-gray-400 text-sm">현대자동차 설비관리 엔지니어</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating badge -->
+                        <div class="absolute -bottom-4 -right-4 md:right-4 bg-navy-700 border border-navy-600 rounded-xl px-4 py-3 shadow-xl">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-2xl">🎓</span>
+                                <div>
+                                    <p class="text-xs text-gray-400">전공</p>
+                                    <p class="text-sm font-medium">전기공학</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- About Content -->
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-bold text-white">
+                            안녕하세요, <span class="text-accent-gold">설비관리 엔지니어</span>입니다
+                        </h3>
+                        
+                        <p class="text-gray-400 leading-relaxed">
+                            전기공학을 전공하며 자동화 시스템과 산업용 로봇에 대한 깊은 관심을 가지게 되었습니다. 
+                            대학 시절부터 PLC 프로그래밍과 로봇 제어에 매료되어, 다양한 프로젝트와 경진대회에 
+                            참여하며 실무 역량을 키워왔습니다.
+                        </p>
+                        
+                        <p class="text-gray-400 leading-relaxed">
+                            현재 현대자동차에서 설비관리 엔지니어로 근무하며, Siemens PLC와 Yaskawa 로봇을 활용한 
+                            생산 라인의 안정적인 운영과 지속적인 개선 업무를 담당하고 있습니다. 스마트 팩토리 시대에 
+                            맞는 차세대 엔지니어로 성장하기 위해 끊임없이 노력하고 있습니다.
+                        </p>
+                        
+                        <!-- Info Cards -->
+                        <div class="grid grid-cols-2 gap-4 pt-4">
+                            <div class="bg-navy-700/50 rounded-xl p-4 border border-navy-600/50">
+                                <p class="text-accent-gold text-2xl font-bold">현대</p>
+                                <p class="text-gray-400 text-sm">자동차</p>
+                            </div>
+                            <div class="bg-navy-700/50 rounded-xl p-4 border border-navy-600/50">
+                                <p class="text-accent-gold text-2xl font-bold">전기</p>
+                                <p class="text-gray-400 text-sm">공학 전공</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career & Skills Section -->
+    <section id="career" class="py-24 bg-navy-900 relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="fade-in">
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <span class="text-accent-gold text-sm font-medium tracking-widest uppercase">Career & Skills</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mt-4 mb-6">경력 & 기술</h2>
+                    <div class="w-20 h-1 bg-gradient-to-r from-navy-600 to-accent-gold mx-auto rounded-full"></div>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <!-- Career Timeline -->
+                    <div>
+                        <h3 class="text-xl font-bold mb-8 flex items-center">
+                            <span class="w-10 h-10 bg-navy-700 rounded-lg flex items-center justify-center mr-3">
+                                <svg class="w-5 h-5 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                            </span>
+                            경력 사항
+                        </h3>
+                        
+                        <div class="relative pl-8 border-l-2 border-navy-700 space-y-8">
+                            <!-- Career Item 1 -->
+                            <div class="relative card-hover bg-navy-800/50 rounded-xl p-6 border border-navy-700/50">
+                                <div class="absolute -left-[41px] w-4 h-4 bg-accent-gold rounded-full border-4 border-navy-900"></div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-accent-gold text-sm font-medium">현재 재직</span>
+                                    <span class="text-gray-500 text-xs">2023 - 현재</span>
+                                </div>
+                                <h4 class="text-lg font-bold text-white mb-2">현대자동차</h4>
+                                <p class="text-gray-400 text-sm">설비관리 엔지니어</p>
+                                <ul class="mt-3 space-y-1 text-sm text-gray-500">
+                                    <li>• 생산 라인 설비 유지보수</li>
+                                    <li>• PLC 프로그램 최적화</li>
+                                    <li>• 로봇 시스템 관리</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Career Item 2 -->
+                            <div class="relative card-hover bg-navy-800/50 rounded-xl p-6 border border-navy-700/50">
+                                <div class="absolute -left-[41px] w-4 h-4 bg-navy-600 rounded-full border-4 border-navy-900"></div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-gray-400 text-sm font-medium">학력</span>
+                                    <span class="text-gray-500 text-xs">2019 - 2023</span>
+                                </div>
+                                <h4 class="text-lg font-bold text-white mb-2">대학교</h4>
+                                <p class="text-gray-400 text-sm">전기공학과 졸업</p>
+                                <ul class="mt-3 space-y-1 text-sm text-gray-500">
+                                    <li>• 자동화 시스템 연구</li>
+                                    <li>• 로봇 동아리 활동</li>
+                                    <li>• 캡스톤 프로젝트 수행</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Skills -->
+                    <div>
+                        <h3 class="text-xl font-bold mb-8 flex items-center">
+                            <span class="w-10 h-10 bg-navy-700 rounded-lg flex items-center justify-center mr-3">
+                                <svg class="w-5 h-5 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                </svg>
+                            </span>
+                            전문 기술
+                        </h3>
+                        
+                        <div class="space-y-6">
+                            <!-- Skill 1 -->
+                            <div class="card-hover bg-navy-800/50 rounded-xl p-6 border border-navy-700/50">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="font-medium">Siemens PLC (TIA Portal)</span>
+                                    <span class="text-accent-gold text-sm">Expert</span>
+                                </div>
+                                <div class="h-2 bg-navy-700 rounded-full overflow-hidden">
+                                    <div class="skill-bar h-full bg-gradient-to-r from-navy-500 to-accent-gold rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Skill 2 -->
+                            <div class="card-hover bg-navy-800/50 rounded-xl p-6 border border-navy-700/50">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="font-medium">Yaskawa 로봇 프로그래밍</span>
+                                    <span class="text-accent-gold text-sm">Advanced</span>
+                                </div>
+                                <div class="h-2 bg-navy-700 rounded-full overflow-hidden">
+                                    <div class="skill-bar h-full bg-gradient-to-r from-navy-500 to-accent-gold rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Skill 3 -->
+                            <div class="card-hover bg-navy-800/50 rounded-xl p-6 border border-navy-700/50">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="font-medium">설비 유지보수</span>
+                                    <span class="text-accent-gold text-sm">Expert</span>
+                                </div>
+                                <div class="h-2 bg-navy-700 rounded-full overflow-hidden">
+                                    <div class="skill-bar h-full bg-gradient-to-r from-navy-500 to-accent-gold rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Skill 4 -->
+                            <div class="card-hover bg-navy-800/50 rounded-xl p-6 border border-navy-700/50">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="font-medium">전기 회로 설계</span>
+                                    <span class="text-accent-gold text-sm">Advanced</span>
+                                </div>
+                                <div class="h-2 bg-navy-700 rounded-full overflow-hidden">
+                                    <div class="skill-bar h-full bg-gradient-to-r from-navy-500 to-accent-gold rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Tech Tags -->
+                            <div class="flex flex-wrap gap-2 pt-4">
+                                <span class="px-3 py-1 bg-navy-700/50 border border-navy-600/50 rounded-full text-xs text-gray-400">SCADA</span>
+                                <span class="px-3 py-1 bg-navy-700/50 border border-navy-600/50 rounded-full text-xs text-gray-400">HMI</span>
+                                <span class="px-3 py-1 bg-navy-700/50 border border-navy-600/50 rounded-full text-xs text-gray-400">MES</span>
+                                <span class="px-3 py-1 bg-navy-700/50 border border-navy-600/50 rounded-full text-xs text-gray-400">AutoCAD</span>
+                                <span class="px-3 py-1 bg-navy-700/50 border border-navy-600/50 rounded-full text-xs text-gray-400">Python</span>
+                                <span class="px-3 py-1 bg-navy-700/50 border border-navy-600/50 rounded-full text-xs text-gray-400">데이터 분석</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Socials Section -->
+    <section id="socials" class="py-24 bg-navy-800/50 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-navy-900 via-transparent to-navy-900"></div>
+        
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            <div class="fade-in">
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <span class="text-accent-gold text-sm font-medium tracking-widest uppercase">Socials</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mt-4 mb-6">소셜 & 연락처</h2>
+                    <div class="w-20 h-1 bg-gradient-to-r from-navy-600 to-accent-gold mx-auto rounded-full"></div>
+                    <p class="text-gray-400 mt-6 max-w-lg mx-auto">
+                        더 많은 콘텐츠와 소통을 원하신다면 아래 채널을 방문해주세요
+                    </p>
+                </div>
+                
+                <!-- YouTube Featured Card -->
+                <div class="max-w-2xl mx-auto mb-12">
+                    <a href="https://www.youtube.com/@your-channel" target="_blank" rel="noopener noreferrer" 
+                       class="group block card-hover bg-gradient-to-br from-navy-800 to-navy-700 rounded-2xl p-8 border border-navy-600/50 youtube-glow relative overflow-hidden">
+                        <!-- Decorative gradient -->
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-red-500/10 rounded-full blur-3xl"></div>
+                        
+                        <div class="flex flex-col md:flex-row items-center gap-6 relative z-10">
+                            <!-- YouTube Icon -->
+                            <div class="w-20 h-20 bg-red-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-10 h-10 text-white" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                </svg>
+                            </div>
+                            
+                            <div class="flex-1 text-center md:text-left">
+                                <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors">
+                                    YouTube 채널
+                                </h3>
+                                <p class="text-gray-400 mb-4">
+                                    PLC 프로그래밍, 로봇 제어, 설비관리 노하우를 영상으로 공유합니다
+                                </p>
+                                <div class="inline-flex items-center text-red-400 font-medium">
+                                    채널 방문하기
+                                    <svg class="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Other Social Links -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+                    <!-- Email -->
+                    <a href="mailto:your-email@example.com" class="card-hover bg-navy-800/50 rounded-xl p-6 border border-navy-700/50 text-center group">
+                        <div class="w-12 h-12 mx-auto bg-navy-700 rounded-lg flex items-center justify-center mb-3 group-hover:bg-navy-600 transition-colors">
+                            <svg class="w-6 h-6 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                        <p class="text-sm font-medium text-gray-300">이메일</p>
+                    </a>
+                    
+                    <!-- GitHub -->
+                    <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer" class="card-hover bg-navy-800/50 rounded-xl p-6 border border-navy-700/50 text-center group">
+                        <div class="w-12 h-12 mx-auto bg-navy-700 rounded-lg flex items-center justify-center mb-3 group-hover:bg-navy-600 transition-colors">
+                            <svg class="w-6 h-6 text-accent-gold" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </div>
+                        <p class="text-sm font-medium text-gray-300">GitHub</p>
+                    </a>
+                    
+                    <!-- LinkedIn -->
+                    <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" class="card-hover bg-navy-800/50 rounded-xl p-6 border border-navy-700/50 text-center group">
+                        <div class="w-12 h-12 mx-auto bg-navy-700 rounded-lg flex items-center justify-center mb-3 group-hover:bg-navy-600 transition-colors">
+                            <svg class="w-6 h-6 text-accent-gold" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </div>
+                        <p class="text-sm font-medium text-gray-300">LinkedIn</p>
+                    </a>
+                    
+                    <!-- Instagram -->
+                    <a href="https://instagram.com/your-handle" target="_blank" rel="noopener noreferrer" class="card-hover bg-navy-800/50 rounded-xl p-6 border border-navy-700/50 text-center group">
+                        <div class="w-12 h-12 mx-auto bg-navy-700 rounded-lg flex items-center justify-center mb-3 group-hover:bg-navy-600 transition-colors">
+                            <svg class="w-6 h-6 text-accent-gold" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </div>
+                        <p class="text-sm font-medium text-gray-300">Instagram</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-navy-900 border-t border-navy-800">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-gray-500 text-sm">
+                    © 2024 설비관리 엔지니어. All rights reserved.
+                </p>
+                <p class="text-gray-500 text-sm">
+                    현대자동차 | Siemens PLC | Yaskawa 로봇
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        let lastScrollY = window.scrollY;
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+        
+        // Fade in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        fadeElements.forEach(element => {
+            observer.observe(element);
+        });
+        
+        // Skill bar animation
+        const skillBars = document.querySelectorAll('.skill-bar');
+        
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.style.width;
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        skillBars.forEach(bar => {
+            const width = bar.style.width;
+            bar.style.width = '0';
+            skillObserver.observe(bar);
+            
+            setTimeout(() => {
+                bar.style.width = width;
+            }, 500);
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
