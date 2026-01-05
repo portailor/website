@@ -346,14 +346,17 @@
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-navy-700/50 pt-4">
                 <div class="flex flex-col space-y-4">
-                    <a href="#hero" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">홈</a>
-                    <a href="#about" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">소개</a>
-                    <a href="#career" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">경력 &
+                    <a href="#hero" class="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+                        data-lang-ko="홈" data-lang-en="Home">홈</a>
+                    <a href="#about" class="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+                        data-lang-ko="소개" data-lang-en="About">소개</a>
+                    <a href="#career" class="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+                        data-lang-ko="경력 & 기술" data-lang-en="Career & Skills">경력 &
                         기술</a>
-                    <a href="#projects"
-                        class="text-sm font-medium text-gray-300 hover:text-white transition-colors">프로젝트</a>
-                    <a href="#socials"
-                        class="text-sm font-medium text-gray-300 hover:text-white transition-colors">소셜</a>
+                    <a href="#projects" class="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+                        data-lang-ko="프로젝트" data-lang-en="Projects">프로젝트</a>
+                    <a href="#socials" class="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+                        data-lang-ko="소셜" data-lang-en="Social">소셜</a>
                 </div>
             </div>
         </div>
@@ -371,18 +374,21 @@
                 <div
                     class="inline-flex items-center px-4 py-2 rounded-full bg-navy-700/50 border border-navy-600/50 mb-8">
                     <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
-                    <span class="text-sm text-gray-300">현대자동차 근무중</span>
+                    <span class="text-sm text-gray-300" data-lang-ko="현대자동차 근무중"
+                        data-lang-en="Working at Hyundai Motor Company">현대자동차 근무중</span>
                 </div>
 
                 <!-- Main Title -->
                 <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-                    <span class="text-white">설비관리</span>
+                    <span class="text-white" data-lang-ko="설비관리" data-lang-en="Facility Management">설비관리</span>
                     <br>
-                    <span class="gradient-text">엔지니어</span>
+                    <span class="gradient-text" data-lang-ko="엔지니어" data-lang-en="Engineer">엔지니어</span>
                 </h1>
 
                 <!-- Subtitle -->
-                <p class="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+                <p class="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed"
+                    data-ko="<span class='text-accent-gold font-medium'>Siemens PLC</span> & <span class='text-accent-gold font-medium'>Yaskawa 로봇</span> 전문가<br class='hidden md:block'>스마트 팩토리의 안정적인 운영을 책임지는 엔지니어입니다"
+                    data-en="<span class='text-accent-gold font-medium'>Siemens PLC</span> & <span class='text-accent-gold font-medium'>Yaskawa Robot</span> Specialist<br class='hidden md:block'>Engineer ensuring stable operation of smart factories">
                     <span class="text-accent-gold font-medium">Siemens PLC</span> &
                     <span class="text-accent-gold font-medium">Yaskawa 로봇</span> 전문가
                     <br class="hidden md:block">
@@ -393,7 +399,7 @@
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
                     <a href="#about"
                         class="group px-8 py-4 bg-gradient-to-r from-navy-600 to-navy-500 rounded-lg font-medium hover:from-navy-500 hover:to-navy-400 transition-all duration-300 flex items-center">
-                        자세히 보기
+                        <span data-lang-ko="자세히 보기" data-lang-en="Learn More">자세히 보기</span>
                         <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -401,7 +407,8 @@
                         </svg>
                     </a>
                     <a href="#socials"
-                        class="px-8 py-4 border border-gray-600 rounded-lg font-medium text-gray-300 hover:border-accent-gold hover:text-accent-gold transition-all duration-300">
+                        class="px-8 py-4 border border-gray-600 rounded-lg font-medium text-gray-300 hover:border-accent-gold hover:text-accent-gold transition-all duration-300"
+                        data-lang-ko="연락하기" data-lang-en="Contact Me">
                         연락하기
                     </a>
                 </div>
@@ -426,7 +433,8 @@
                 <!-- Section Header -->
                 <div class="text-center mb-16">
                     <span class="text-accent-gold text-sm font-medium tracking-widest uppercase">About Me</span>
-                    <h2 class="text-3xl md:text-4xl font-bold mt-4 mb-6">소개</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold mt-4 mb-6" data-lang-ko="소개" data-lang-en="About Me">소개
+                    </h2>
                     <div class="w-20 h-1 bg-gradient-to-r from-navy-600 to-accent-gold mx-auto rounded-full"></div>
                 </div>
 
@@ -1316,6 +1324,59 @@
 
             certObserver.observe(card);
         });
+
+        // Language Switching System
+        const langKr = document.getElementById('lang-kr');
+        const langEn = document.getElementById('lang-en');
+        let currentLang = localStorage.getItem('portfolio-lang') || 'ko';
+
+        // Set initial language
+        setLanguage(currentLang);
+
+        // Language button click handlers
+        langKr.addEventListener('click', () => setLanguage('ko'));
+        langEn.addEventListener('click', () => setLanguage('en'));
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('portfolio-lang', lang);
+
+            // Update button states
+            if (lang === 'ko') {
+                langKr.classList.add('active');
+                langEn.classList.remove('active');
+            } else {
+                langEn.classList.add('active');
+                langKr.classList.remove('active');
+            }
+
+            // Add translating class for fade effect
+            document.body.classList.add('translating');
+
+            // Wait for fade out, then change content
+            setTimeout(() => {
+                // Update all elements with data-lang attributes
+                document.querySelectorAll('[data-lang-ko][data-lang-en]').forEach(element => {
+                    if (lang === 'ko') {
+                        element.textContent = element.getAttribute('data-lang-ko');
+                    } else {
+                        element.textContent = element.getAttribute('data-lang-en');
+                    }
+                });
+
+                // Update elements with data-ko and data-en attributes (for multi-line content)
+                document.querySelectorAll('[data-ko][data-en]').forEach(element => {
+                    if (lang === 'ko') {
+                        element.innerHTML = element.getAttribute('data-ko');
+                    } else {
+                        element.innerHTML = element.getAttribute('data-en');
+                    }
+                });
+
+                // Remove translating class for fade in
+                document.body.classList.remove('translating');
+            }, 150);
+        }
     </script>
 </body>
 
