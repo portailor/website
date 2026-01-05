@@ -265,6 +265,29 @@
             height: 16px;
             border-width: 4px;
         }
+
+        /* Language Toggle */
+        .lang-toggle {
+            transition: all 0.3s ease;
+        }
+
+        .lang-toggle button {
+            transition: all 0.3s ease;
+        }
+
+        .lang-toggle button.active {
+            color: #c9a962;
+            font-weight: 600;
+        }
+
+        /* Translation fade effect */
+        [data-lang] {
+            transition: opacity 0.3s ease;
+        }
+
+        .translating [data-lang] {
+            opacity: 0;
+        }
     </style>
 </head>
 
@@ -284,16 +307,31 @@
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#hero"
-                        class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">홈</a>
+                        class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors"
+                        data-lang-ko="홈" data-lang-en="Home">홈</a>
                     <a href="#about"
-                        class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">소개</a>
+                        class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors"
+                        data-lang-ko="소개" data-lang-en="About">소개</a>
                     <a href="#career"
-                        class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">경력 &
+                        class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors"
+                        data-lang-ko="경력 & 기술" data-lang-en="Career & Skills">경력 &
                         기술</a>
                     <a href="#projects"
-                        class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">프로젝트</a>
+                        class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors"
+                        data-lang-ko="프로젝트" data-lang-en="Projects">프로젝트</a>
                     <a href="#socials"
-                        class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">소셜</a>
+                        class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors"
+                        data-lang-ko="소셜" data-lang-en="Social">소셜</a>
+
+                    <!-- Language Toggle -->
+                    <div
+                        class="lang-toggle flex items-center space-x-1 border border-navy-600 rounded-lg p-1 bg-navy-800/50">
+                        <button id="lang-kr"
+                            class="active px-3 py-1 text-xs font-medium rounded transition-colors hover:bg-navy-700/50">KR</button>
+                        <span class="text-gray-600">|</span>
+                        <button id="lang-en"
+                            class="px-3 py-1 text-xs font-medium rounded transition-colors hover:bg-navy-700/50">EN</button>
+                    </div>
                 </div>
 
                 <!-- Mobile Menu Button -->
