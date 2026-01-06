@@ -1475,6 +1475,474 @@
 
     <!-- JavaScript -->
     <script>
+//// ============================================
+// 📊 포트폴리오 데이터 관리 객체
+// ============================================
+// 🎯 **사용법**: 새로운 클라이언트를 위해 이 객체의 값만 수정하면
+//              전체 포트폴리오 내용이 자동으로 업데이트됩니다.
+// 
+// 💡 **주의사항**:
+//    - 모든 텍스트는 한국어(ko)와 영어(en) 버전을 모두 제공
+//    - HTML 태그는 사용하지 말고 순수 텍스트만 입력
+//    - 배열 항목 추가/삭제 시 쉼표(,) 주의
+
+const PORTFOLIO_DATA = {
+    // ========================================
+    // 기본 정보
+    // ========================================
+    personal: {
+        name: {
+            ko: "백동화",
+            en: "Donghwa Baek"
+        },
+        title: {
+            ko: "설비관리 엔지니어",
+            en: "Facility Management Engineer"
+        },
+        company: {
+            ko: "현대자동차",
+            en: "Hyundai Motor Company"
+        },
+        email: "donghwa1215@naver.com",
+        profileImage: "profile.jpg",  // 프로필 이미지 파일명
+        specialty: {
+            ko: "Siemens PLC & Yaskawa 로봇 전문가",
+            en: "Siemens PLC & Yaskawa Robot Specialist"
+        },
+        status: {
+            ko: "현대자동차 근무중",
+            en: "Working at Hyundai Motor Company"
+        },
+        major: {
+            ko: "전기공학",
+            en: "Electrical Engineering"
+        }
+    },
+
+    // ========================================
+    // About 섹션 소개글
+    // ========================================
+    about: {
+        greeting: {
+            ko: "안녕하세요, 설비관리 엔지니어 백동화입니다",
+            en: "Hello, I'm Donghwa Baek, Facility Management Engineer"
+        },
+        paragraph1: {
+            ko: "부산기계공업고등학교 마이스터과정을 거쳐 산업 현장에서 실무 경험을 쌓아왔으며, 현재 울산과학대학교 전기전자공학부에서 재직자 특별전형으로 이론적 기반을 강화하고 있습니다.",
+            en: "Gained hands-on experience in industrial settings through the Meister program at Busan Mechanical Technical High School, and currently strengthening my theoretical foundation in the Electrical Engineering department at Ulsan Science University through a special admission program for working professionals."
+        },
+        paragraph2: {
+            ko: "현대자동차 설비관리부에서 Siemens PLC 및 Yaskawa 로봇 기반 생산 라인의 운영 안정화와 설비 최적화를 담당하고 있으며, 제조 현장의 자동화 시스템 구축 및 유지보수 전문성을 보유하고 있습니다.",
+            en: "Currently working at Hyundai Motor Company's Facility Management Division, responsible for stabilizing production lines based on Siemens PLC and Yaskawa robotics, with expertise in building and maintaining automation systems in manufacturing environments."
+        }
+    },
+
+    // ========================================
+    // 학력 정보
+    // ========================================
+    education: {
+        university: {
+            name: { ko: "울산과학대학교", en: "Ulsan Science University" },
+            major: { ko: "전기전자공학부 전기전공", en: "Electrical Engineering" }
+        },
+        highSchool: {
+            name: { ko: "부산기계공업고등학교", en: "Busan Mechanical Technical High School" },
+            type: { ko: "마이스터고 · 전기과", en: "Meister Program - Electrical Engineering" }
+        }
+    },
+
+    // ========================================
+    // 자격증 배열 (동적 카드 생성용)
+    // ========================================
+    certifications: [
+        {
+            id: 1,
+            icon: "electricity",  // 아이콘 타입
+            name: { ko: "전기기능사", en: "Industrial Engineer - Electrician" },
+            year: { ko: "2018년", en: "2018" },
+            status: { ko: "취득", en: "Obtained" },
+            inProgress: false  // false: 취득완료, true: 준비중
+        },
+        {
+            id: 2,
+            icon: "maintenance",
+            name: { ko: "설비보전기능사", en: "Industrial Engineer - Facility Maintenance" },
+            year: { ko: "2019년", en: "2019" },
+            status: { ko: "취득", en: "Obtained" },
+            inProgress: false
+        },
+        {
+            id: 3,
+            icon: "electronics",
+            name: { ko: "전자기능사", en: "Industrial Engineer - Electronics" },
+            year: { ko: "2020년", en: "2020" },
+            status: { ko: "취득", en: "Obtained" },
+            inProgress: false
+        },
+        {
+            id: 4,
+            icon: "automation",
+            name: { ko: "자동화설비기능사", en: "Industrial Engineer - Production Automation" },
+            year: { ko: "2020년", en: "2020" },
+            status: { ko: "취득", en: "Obtained" },
+            inProgress: false
+        },
+        {
+            id: 5,
+            icon: "license",
+            name: { ko: "1종 대형 면허", en: "Class 1 Heavy Vehicle License" },
+            year: { ko: "2023년", en: "2023" },
+            status: { ko: "취득", en: "Obtained" },
+            inProgress: false
+        },
+        {
+            id: 6,
+            icon: "electricity",
+            name: { ko: "전기기사", en: "Professional Engineer - Electrical" },
+            year: { ko: "준비 중", en: "In Progress" },
+            status: { ko: "진행 중", en: "In Progress" },
+            inProgress: true  // 준비 중인 자격증
+        }
+    ],
+
+    // ========================================
+    // 경력 타임라인 배열
+    // ========================================
+    career: [
+        {
+            id: 1,
+            isCurrent: true,  // 현재 재직중 여부
+            company: { 
+                ko: "현대자동차 설비관리부", 
+                en: "Hyundai Motor Company - Facility Management" 
+            },
+            position: { 
+                ko: "설비관리 엔지니어", 
+                en: "Facility Management Engineer" 
+            },
+            period: { ko: "2024 - 현재", en: "2024 - Present" },
+            periodLabel: { ko: "현재 재직", en: "Current" },
+            details: {
+                ko: [
+                    "Siemens PLC 전문",
+                    "Yaskawa 로봇 전문",
+                    "생산 라인 설비 유지보수"
+                ],
+                en: [
+                    "Siemens PLC Specialist",
+                    "Yaskawa Robotics Specialist",
+                    "Production Line Equipment Maintenance"
+                ]
+            }
+        },
+        {
+            id: 2,
+            isCurrent: true,
+            company: { ko: "울산과학대학교", en: "Ulsan Science University" },
+            position: { 
+                ko: "전기전자공학부 전기전공", 
+                en: "Electrical Engineering" 
+            },
+            period: { ko: "2025 - 현재", en: "2025 - Present" },
+            periodLabel: { ko: "재학 중", en: "Currently Enrolled" },
+            highlight: {
+                ko: "1학년 1·2학기 만점(4.5/4.5) 취득 - 수석",
+                en: "Perfect GPA (4.5/4.5) - Top of Class for First Year"
+            }
+        },
+        {
+            id: 3,
+            isCurrent: false,
+            company: { 
+                ko: "현대중공업 MOS 보전부", 
+                en: "Hyundai Heavy Industries - MOS Maintenance" 
+            },
+            position: { ko: "보전 엔지니어", en: "Maintenance Engineer" },
+            period: { ko: "6개월", en: "6 months" },
+            periodLabel: { ko: "경력", en: "Experience" },
+            details: {
+                ko: ["중장비 설비 유지보수", "예방 정비 업무"],
+                en: ["Heavy Equipment Maintenance", "Preventive Maintenance"]
+            }
+        },
+        {
+            id: 4,
+            isCurrent: false,
+            company: { 
+                ko: "공군 전력설비병", 
+                en: "ROK Air Force - Power Facility Specialist" 
+            },
+            position: { ko: "전력 설비 관리", en: "Power Facility Management" },
+            period: { ko: "2021 - 2022", en: "2021 - 2022" },
+            periodLabel: { ko: "병역", en: "Military Service" },
+            details: {
+                ko: ["기지 전력 설비 운영", "전기 시스템 점검 및 정비"],
+                en: ["Base Power Facility Operations", "Electrical System Inspection & Maintenance"]
+            }
+        },
+        {
+            id: 5,
+            isCurrent: false,
+            isEducation: true,  // 학력 항목
+            company: { 
+                ko: "부산기계공업고등학교", 
+                en: "Busan Mechanical Technical High School" 
+            },
+            position: { ko: "마이스터고 · 전기과", en: "Meister Program - Electrical Engineering" },
+            period: { ko: "졸업", en: "Graduated" },
+            periodLabel: { ko: "학력", en: "Education" }
+        }
+    ],
+
+    // ========================================
+    // 기술 스택 배열
+    // ========================================
+    skills: [
+        {
+            id: 1,
+            name: "Siemens PLC (TIA Portal)",
+            nameTranslated: { ko: "Siemens PLC (TIA Portal)", en: "Siemens PLC (TIA Portal)" },
+            level: 90,  // 숙련도 (0-100)
+            levelText: "Expert"
+        },
+        {
+            id: 2,
+            name: { ko: "Yaskawa 로봇 프로그래밍", en: "Yaskawa Robot Programming" },
+            level: 85,
+            levelText: "Advanced"
+        },
+        {
+            id: 3,
+            name: { ko: "설비 유지보수", en: "Facility Maintenance" },
+            level: 95,
+            levelText: "Expert"
+        },
+        {
+            id: 4,
+            name: { ko: "전기 회로 설계", en: "Electrical Circuit Design" },
+            level: 80,
+            levelText: "Advanced"
+        }
+    ],
+
+    // ========================================
+    // 프로젝트 배열
+    // ========================================
+    projects: [
+        {
+            id: 1,
+            year: "2025",
+            icon: "module",
+            title: {
+                ko: "모듈 장착기 회로 개선 프로젝트",
+                en: "Module Mounting Machine Circuit Optimization"
+            },
+            description: {
+                ko: "모듈 이탈 불량을 근본적으로 해결하기 위해 Siemens PLC 제어 로직을 재설계하였습니다. 기존 회로에 장비 간 인터록 신호를 추가 구성하여 작업 안정성을 확보하고, 불량 발생 시 즉각적인 라인 정지가 가능하도록 개선하였습니다.",
+                en: "Redesigned Siemens PLC control logic to fundamentally resolve module detachment defects. Enhanced operational stability by implementing inter-equipment interlock signals and enabled immediate line shutdowns upon defect detection."
+            },
+            technologies: {
+                ko: ["Siemens PLC", "TIA Portal", "인터록 회로 설계"],
+                en: ["Siemens PLC", "TIA Portal", "Interlock Circuit Design"]
+            },
+            results: {
+                annualSavings: 8880696,  // 연간 절감액 (숫자만)
+                monthlySavings: 740058,  // 월간 절감액
+                achievements: {
+                    ko: ["모듈 이탈 불량률 대폭 감소"],
+                    en: ["Significant Reduction in Module Detachment Defects"]
+                }
+            }
+        },
+        {
+            id: 2,
+            year: "2025",
+            icon: "mes",
+            title: {
+                ko: "MES 연동 및 실시간 알람 시스템 구축",
+                en: "MES Integration & Real-Time Alarm System Implementation"
+            },
+            description: {
+                ko: "MES 통신 기반 실시간 모니터링 체계가 부재한 환경에서, 제어반과 장비 간 인터록 회로를 신규 구성하고 TIA Portal을 통해 이상 알람 태그를 추가하였습니다. 이를 통해 설비 이상 발생 시 즉각적인 감지 및 대응이 가능해져 라인 가동률이 크게 향상되었습니다.",
+                en: "Established interlock circuits between control panels and equipment and added alarm tags via TIA Portal in an environment lacking MES-based real-time monitoring. This enabled immediate detection and response to equipment abnormalities, significantly improving line uptime."
+            },
+            technologies: {
+                ko: ["MES 통신", "TIA Portal", "인터록 회로", "알람 시스템"],
+                en: ["MES Communication", "TIA Portal", "Interlock Circuit", "Alarm System"]
+            },
+            results: {
+                achievements: {
+                    ko: [
+                        "라인 가동률 향상",
+                        "설비 이상 대응 시간 단축",
+                        "실시간 모니터링 체계 구축"
+                    ],
+                    en: [
+                        "Improved Line Uptime",
+                        "Reduced Equipment Response Time",
+                        "Established Real-Time Monitoring System"
+                    ]
+                }
+            }
+        }
+    ],
+
+    // ========================================
+    // 소셜 링크
+    // ========================================
+    social: {
+        youtube: "https://www.youtube.com/channel/UC1Ol7HzVQkh0F4qMkdBc0cQ",
+        linkedin: "http://www.linkedin.com/in/pastimeric",
+        instagram: "https://www.instagram.com/dongdong__.__./"
+    },
+
+    // ========================================
+    // SEO 메타데이터 (나중에 사용)
+    // ========================================
+    seo: {
+        title: "Portfolio | 설비관리 엔지니어 백동화",
+        description: "현대자동차 설비관리 엔지니어 백동화 포트폴리오 - Siemens PLC, Yaskawa 로봇 전문가",
+        keywords: "설비관리, 엔지니어, 현대자동차, PLC, 로봇, 전기공학",
+        ogImage: "profile.jpg",
+        siteUrl: "https://portailor.github.io/website/"  // 🔴 실제 배포 URL로 변경 필요!
+    }
+};
+
+//// ============================================
+// 🔄 데이터 주입 시스템
+// ============================================
+// PORTFOLIO_DATA 객체의 데이터를 HTML 요소에 자동으로 삽입합니다.
+// 현재 언어 가져오기 (기존 언어 시스템 활용)
+function getCurrentLang() {
+    return currentLang || 'ko';
+}
+// 다국어 텍스트 추출 헬퍼 함수
+function getText(dataObj) {
+    const lang = getCurrentLang();
+    if (typeof dataObj === 'object' && dataObj.ko && dataObj.en) {
+        return dataObj[lang] || dataObj.ko;
+    }
+    return dataObj;
+}
+// ============================================
+// 1️⃣ 자격증 카드 동적 생성
+// ============================================
+function renderCertifications() {
+    // 자격증 그리드 컨테이너 찾기
+    const container = document.querySelector('#about .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3');
+    if (!container) {
+        console.warn('자격증 컨테이너를 찾을 수 없습니다.');
+        return;
+    }
+    // 아이콘 SVG 맵핑
+    const iconSVG = {
+        electricity: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />`,
+        maintenance: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />`,
+        electronics: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />`,
+        automation: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />`,
+        license: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12M8 12h12M8 17h12M4 7v.01M4 12v.01M4 17v.01" /><circle cx="12" cy="12" r="9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />`
+    };
+    // HTML 생성
+    const html = PORTFOLIO_DATA.certifications.map(cert => {
+        const lang = getCurrentLang();
+        const progressClass = cert.inProgress ? 'cert-card-progress' : '';
+        const bgOpacity = cert.inProgress ? 'from-navy-800/50 to-navy-700/50' : 'from-navy-800/80 to-navy-700/80';
+        const borderStyle = cert.inProgress ? 'border-2 border-navy-600/30' : 'border-navy-600/50';
+        const iconBg = cert.inProgress ? 'bg-navy-700/50' : 'bg-navy-600';
+        const iconColor = cert.inProgress ? 'text-gray-400' : 'text-accent-gold';
+        const yearBg = cert.inProgress ? 'text-gray-400 bg-navy-800/50 border border-navy-600/30' : 'text-accent-gold bg-navy-700/50';
+        const textColor = cert.inProgress ? 'text-gray-300' : 'text-white';
+        const statusColor = cert.inProgress ? 'text-gray-500' : 'text-gray-400';
+        return `
+            <div class="cert-card ${progressClass} bg-gradient-to-br ${bgOpacity} rounded-xl p-6 border ${borderStyle}">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-12 h-12 ${iconBg} rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 ${iconColor}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            ${iconSVG[cert.icon] || iconSVG.electricity}
+                        </svg>
+                    </div>
+                    <span class="text-xs ${yearBg} px-3 py-1 rounded-full">${getText(cert.year)}</span>
+                </div>
+                <h4 class="text-lg font-bold ${textColor} mb-1">${getText(cert.name)}</h4>
+                <p class="text-sm ${statusColor}">${getText(cert.status)}</p>
+            </div>
+        `;
+    }).join('');
+    container.innerHTML = html;
+}
+// ============================================
+// 2️⃣ 이메일 주소 업데이트
+// ============================================
+function updateContactInfo() {
+    // 이메일 모달의 이메일 주소
+    const emailText = document.getElementById('emailText');
+    if (emailText) {
+        emailText.textContent = PORTFOLIO_DATA.personal.email;
+    }
+    // 복사 버튼 이벤트도 업데이트
+    const copyBtn = document.getElementById('copyBtn');
+    if (copyBtn) {
+        // 기존 이벤트 리스너 제거 후 새로 등록
+        const newCopyBtn = copyBtn.cloneNode(true);
+        copyBtn.parentNode.replaceChild(newCopyBtn, copyBtn);
+        
+        newCopyBtn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(PORTFOLIO_DATA.personal.email);
+                document.getElementById('copySuccess').style.opacity = '1';
+                document.getElementById('copyText').textContent = getCurrentLang() === 'ko' ? '복사 완료!' : 'Copied!';
+                setTimeout(() => {
+                    document.getElementById('copySuccess').style.opacity = '0';
+                    document.getElementById('copyText').textContent = getCurrentLang() === 'ko' ? '복사' : 'Copy';
+                }, 2000);
+            } catch (err) {
+                console.error('복사 실패:', err);
+            }
+        });
+    }
+}
+// ============================================
+// 3️⃣ vCard 다운로드 기능 업데이트
+// ============================================
+function updateVcardDownload() {
+    // downloadVcardBtn이 이미 있다면 이벤트 업데이트
+    // 없다면 나중에 추가할 때 사용
+}
+// ============================================
+// 4️⃣ 초기화 함수
+// ============================================
+function initializePortfolioData() {
+    console.log('📊 포트폴리오 데이터 초기화 중...');
+    
+    // 자격증 카드 렌더링
+    renderCertifications();
+    
+    // 연락처 정보 업데이트
+    updateContactInfo();
+    
+    console.log('✅ 포트폴리오 데이터 초기화 완료!');
+}
+// ============================================
+// 5️⃣ 언어 변경 시 데이터 재렌더링
+// ============================================
+// 기존 setLanguage 함수 수정이 필요합니다.
+// setLanguage 함수 마지막에 renderCertifications() 호출 추가
+// 기존 setLanguage 함수를 찾아서 마지막에 추가:
+const originalSetLanguage = setLanguage;
+setLanguage = function(lang) {
+    originalSetLanguage(lang);
+    // 데이터 기반 요소 재렌더링
+    renderCertifications();
+};
+// ============================================
+// 6️⃣ DOM 로드 완료 시 실행
+// ============================================
+// 기존 DOMContentLoaded 리스너에 추가하거나 새로 생성
+document.addEventListener('DOMContentLoaded', () => {
+    initializePortfolioData();
+});
+
+
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
