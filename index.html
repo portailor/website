@@ -7,6 +7,14 @@
     <meta name="description" content="현대자동차 설비관리 엔지니어 백동화 포트폴리오 - Siemens PLC, Yaskawa 로봇 전문가">
     <meta name="keywords" content="설비관리, 엔지니어, 현대자동차, PLC, 로봇, 전기공학">
     <title>Portfolio | 설비관리 엔지니어 백동화</title>
+<!-- SEO 최적화 -->
+<link rel="canonical" href="https://portailor.github.io/website/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="설비관리 엔지니어 백동화">
+<meta property="og:description" content="현대자동차 설비관리부. Siemens PLC 전문.">
+<meta property="og:url" content="https://portailor.github.io/website/">
+<meta property="og:image" content="https://portailor.github.io/website/profile.jpg">
+<meta name="twitter:card" content="summary_large_image">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -1407,6 +1415,33 @@
                         </div>
                         <p class="text-sm font-medium text-gray-300">Instagram</p>
                     </a>
+
+                    <!-- PDF 다운로드 버튼 -->
+                    <button id="downloadPdfBtn"
+                        class="card-hover bg-navy-800/50 rounded-xl p-6 border border-navy-700/50 text-center group cursor-pointer w-40">
+                        <div
+                            class="w-12 h-12 mx-auto bg-navy-700 rounded-lg flex items-center justify-center mb-3 group-hover:bg-navy-600 transition-colors">
+                            <svg class="w-6 h-6 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                        </div>
+                        <p class="text-sm font-medium text-gray-300">PDF 이력서</p>
+                    </button>
+
+                    <!-- vCard 다운로드 버튼 -->
+                    <button id="downloadVcardBtn"
+                        class="card-hover bg-navy-800/50 rounded-xl p-6 border border-navy-700/50 text-center group cursor-pointer w-40">
+                        <div
+                            class="w-12 h-12 mx-auto bg-navy-700 rounded-lg flex items-center justify-center mb-3 group-hover:bg-navy-600 transition-colors">
+                            <svg class="w-6 h-6 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <p class="text-sm font-medium text-gray-300">명함 저장</p>
+                    </button>
+
                 </div>
             </div>
         </div>
@@ -1922,6 +1957,56 @@ function initializePortfolioData() {
     
     console.log('✅ 포트폴리오 데이터 초기화 완료!');
 }
+
+// ============================================
+// 📥 다운로드 기능
+// ============================================
+
+// PDF 다운로드
+const downloadPdfBtn = document.getElementById('downloadPdfBtn');
+if (downloadPdfBtn) {
+    downloadPdfBtn.addEventListener('click', () => {
+        const lang = getCurrentLang();
+        const message = lang === 'ko' 
+            ? '브라우저 인쇄 대화상자에서 "PDF로 저장"을 선택하세요!' 
+            : 'Select "Save as PDF" in the print dialog!';
+        alert(message);
+        setTimeout(() => window.print(), 300);
+    });
+}
+
+// vCard 다운로드  
+const downloadVcardBtn = document.getElementById('downloadVcardBtn');
+if (downloadVcardBtn) {
+    downloadVcardBtn.addEventListener('click', () => {
+        const lang = getCurrentLang();
+        const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:백동화
+N:백;동화;;;
+ORG:현대자동차
+TITLE:설비관리 엔지니어
+EMAIL:donghwa1215@naver.com
+URL:https://portailor.github.io/website/
+END:VCARD`;
+        
+        const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = '백동화_명함.vcf';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        const message = lang === 'ko'
+            ? '✅ vCard 다운로드 완료!\n\n스마트폰에서 파일을 열어 연락처를 저장할 수 있습니다.'
+            : '✅ vCard downloaded!\n\nYou can open the file on your phone to save the contact.';
+        alert(message);
+    });
+}
+
 // ============================================
 // 5️⃣ 언어 변경 시 데이터 재렌더링
 // ============================================
