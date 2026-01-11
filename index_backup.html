@@ -240,6 +240,7 @@
         }
 
         .cert-card:hover {
+            transform: translateY(-4px) scale(1.02);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
@@ -385,7 +386,30 @@
             opacity: 1;
         }
 
-               /* Link Click Ripple Effect */
+        /* Button Hover Shake Effect */
+        @keyframes subtle-shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-2px);
+            }
+
+            75% {
+                transform: translateX(2px);
+            }
+        }
+
+        button:hover,
+        .nav-link:hover,
+        a[href^="#"]:not(.card-hover):hover {
+            animation: subtle-shake 0.3s ease-in-out 2;
+        }
+
+        /* Link Click Ripple Effect */
         a {
             position: relative;
             overflow: hidden;
@@ -596,17 +620,8 @@
                         data-lang-ko="프로젝트" data-lang-en="Projects">프로젝트</a>
                     <a href="#socials" class="text-sm font-medium text-gray-300 hover:text-white transition-colors"
                         data-lang-ko="소셜" data-lang-en="Social">소셜</a>
-
-  <!-- 모바일 언어 전환 버튼 추가 -->
-        <div class="pt-4 border-t border-navy-700/50">
-            <div class="lang-toggle flex items-center justify-center space-x-1 border border-navy-600 rounded-lg p-1 bg-navy-800/50">
-                <button id="lang-kr-mobile" class="active flex-1 py-2 text-sm font-medium rounded transition-colors hover:bg-navy-700/50">KR</button>
-                <span class="text-gray-600">|</span>
-                <button id="lang-en-mobile" class="flex-1 py-2 text-sm font-medium rounded transition-colors hover:bg-navy-700/50">EN</button>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
         </div>
     </nav>
 
@@ -2208,49 +2223,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Language Switching System
-// 데스크톱 언어 버튼
-const langKr = document.getElementById('lang-kr');
-const langEn = document.getElementById('lang-en');
-
-// 모바일 언어 버튼
-const langKrMobile = document.getElementById('lang-kr-mobile');
-const langEnMobile = document.getElementById('lang-en-mobile');
-
-let currentLang = localStorage.getItem('portfolio-lang') || 'ko';
-
+        const langKr = document.getElementById('lang-kr');
+        const langEn = document.getElementById('lang-en');
+        let currentLang = localStorage.getItem('portfolio-lang') || 'ko';
 
         // Set initial language
         setLanguage(currentLang);
 
         // Language button click handlers
-// 데스크톱 버튼
-if (langKr) langKr.addEventListener('click', () => setLanguage('ko'));
-if (langEn) langEn.addEventListener('click', () => setLanguage('en'));
+        langKr.addEventListener('click', () => setLanguage('ko'));
+        langEn.addEventListener('click', () => setLanguage('en'));
 
-// 모바일 버튼
-if (langKrMobile) langKrMobile.addEventListener('click', () => setLanguage('ko'));
-if (langEnMobile) langEnMobile.addEventListener('click', () => setLanguage('en'));
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('portfolio-lang', lang);
 
-       function setLanguage(lang) {
-    currentLang = lang;
-    localStorage.setItem('portfolio-lang', lang);
-
-    // Update button states (데스크톱 + 모바일)
-    if (lang === 'ko') {
-        // 데스크톱 버튼
-        if (langKr) langKr.classList.add('active');
-        if (langEn) langEn.classList.remove('active');
-        // 모바일 버튼
-        if (langKrMobile) langKrMobile.classList.add('active');
-        if (langEnMobile) langEnMobile.classList.remove('active');
-    } else {
-        // 데스크톱 버튼
-        if (langEn) langEn.classList.add('active');
-        if (langKr) langKr.classList.remove('active');
-        // 모바일 버튼
-        if (langEnMobile) langEnMobile.classList.add('active');
-        if (langKrMobile) langKrMobile.classList.remove('active');
-    }
+            // Update button states
+            if (lang === 'ko') {
+                langKr.classList.add('active');
+                langEn.classList.remove('active');
+            } else {
+                langEn.classList.add('active');
+                langKr.classList.remove('active');
+            }
 
             // Add translating class for fade effect
             document.body.classList.add('translating');
